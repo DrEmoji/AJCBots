@@ -39,7 +39,7 @@ The project is designed for advanced use cases where direct protocol interaction
 
 AJCBots supports integration with **Strawberry Jam**, which provides an easier and more user-friendly way to control and manage bots.
 
-- Strawberry Jam plugin releases:  
+- Strawberry Jam releases:  
   https://github.com/glvckoma/Strawberry-Jam/releases
 
 ---
