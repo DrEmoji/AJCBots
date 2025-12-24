@@ -35,6 +35,15 @@ The project is designed for advanced use cases where direct protocol interaction
 
 ---
 
+## 🧩 Optional Plugin Support
+
+AJCBots supports integration with **Strawberry Jam**, which provides an easier and more user-friendly way to control and manage bots.
+
+- Strawberry Jam plugin releases:  
+  https://github.com/glvckoma/Strawberry-Jam/releases
+
+---
+
 ## 🤖 Capabilities
 
 Depending on implementation and server restrictions, AJCBots may be used to:
@@ -63,9 +72,9 @@ Actual functionality depends on your implementation and the current server-side 
 - Improper or excessive use can result in:
   - **Account bans**
   - **IP bans**
+  
+**Not all accounts will successfully connect or function**. Failures may occur due to unstable or faulty servers, rate limiting, or the use of unreliable or blocked proxy services.
 
-**Not all accounts will successfully connect or function**. Failures may occur due to unstable or faulty game servers, rate limiting, or the use of unreliable or blocked proxy services.
- 
 You are solely responsible for how this software is used.
 
 ---
