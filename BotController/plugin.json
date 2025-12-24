@@ -1,0 +1,8 @@
+{
+  "name": "Bot Controller",
+  "version": "1.0.0",
+  "description": "Control bots over websocket",
+  "author": "DrEmoji",
+  "main": "index.js",
+  "type": "game"
+}
