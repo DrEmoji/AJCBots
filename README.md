@@ -35,7 +35,7 @@ The project is designed for advanced use cases where direct protocol interaction
 
 ---
 
-## 🧩 Optional Plugin Support
+## 🧩 Optional Plugin
 
 AJCBots supports integration with **Strawberry Jam**, which provides an easier and more user-friendly way to control and manage bots.
 
