@@ -72,8 +72,7 @@ Actual functionality depends on your implementation and the current server-side 
 - Improper or excessive use can result in:
   - **Account bans**
   - **IP bans**
-  
-**Not all accounts will successfully connect or function**. Failures may occur due to unstable or faulty servers, rate limiting, or the use of unreliable or blocked proxy services.
+- **Not all accounts will successfully connect or function**. Failures may occur due to unstable or faulty servers, rate limiting, or the use of unreliable or blocked proxy services.
 
 You are solely responsible for how this software is used.
 
