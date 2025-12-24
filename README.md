@@ -73,7 +73,7 @@ Actual functionality depends on your implementation and the current server-side 
   - **Account bans**
   - **IP bans**
 - **Not all accounts will successfully connect or function**. Failures may occur due to unstable or faulty servers, rate limiting, or the use of unreliable or blocked proxy services.
-- This program is not proxied by default and will use your IP address until add your own proxy provider to Controller.js and Extra.js (I recommend a rotating residental proxy)
+- **This program is not proxied by default and will use your IP address** until add your own proxy provider to Controller.js and Extra.js (I recommend a rotating residental proxy)
 
 You are solely responsible for how this software is used.
 
