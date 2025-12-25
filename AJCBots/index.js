@@ -137,15 +137,6 @@ async function InitClient({ username, password }) {
           for (const client of activeClients) client.Rainbow();
           break;
 
-        case "follow":
-          for (const client of activeClients) {
-            if (args[2] !== undefined) {
-              client.Follow(args[1], [Number(args[2]), Number(args[3])]);
-            } else client.Follow(args[1], [0, 0]);
-            client.Log(`Following: ${args[1]}`);
-          }
-          break;
-
         case "heart":
           for (let i = 0; i < activeClients.length; i++) {
             if (!heart[i]) break;
