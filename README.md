@@ -86,7 +86,7 @@ You are solely responsible for how this software is used.
 - The author **does not guarantee support, updates, bug fixes, or maintenance**. Any updates or changes are provided **solely at the author’s discretion**.
 - This project is **not affiliated with, endorsed by, or associated with WildWorks** or any of its subsidiaries.
 - All trademarks, service marks, and game assets are the property of their respective owners.
-- **Any redistribution, modification, or public use of this software must include clear credit to the original author and a link to the original source code repository.**
+- **Any redistribution, modification, sale, commercial use, or public use of this software must include clear credit to the original author and a direct link to the original source code repository.**
 
 ---
 
