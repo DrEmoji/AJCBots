@@ -29,8 +29,8 @@ class NetworkController extends EventEmitter {
             const proxyUrl = `http://${this.options.proxy.username}:${encodeURIComponent(this.options.proxy.password)}@${this.options.proxy.host}:${this.options.proxy.port}`;
             const httpsAgent = new HttpsProxyAgent(proxyUrl);
             const response = await axios.get(`${ANIMAL_JAM_BASE_URL}/flashvars`, {
-            httpsAgent: httpsAgent,
-            timeout: 10000,
+                httpsAgent: httpsAgent,
+                timeout: 10000,
             });
             data = response.data
         }
