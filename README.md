@@ -25,8 +25,8 @@ The project is designed for advanced use cases where direct protocol interaction
   - Send and receive chat messages programmatically.
   - Implement automated responses, commands, or monitoring systems.
 
-- **Protocol-level access**
-  - Suitable for reverse engineering and protocol analysis.
+- **Packet-level access**
+  - Suitable for reverse engineering and research analysis.
   - Enables experimentation with packet structures and server behavior.
 
 - **Extensible design**
