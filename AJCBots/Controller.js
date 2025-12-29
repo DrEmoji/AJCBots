@@ -191,7 +191,6 @@ class NetworkController extends EventEmitter {
 
 
             proxySocket.once('error', (err) => {
-                console.error('[NetworkController] Socket error:', err);
                 this.emit('error', err);
                 cleanUp();
                 reject(err);
@@ -205,15 +204,10 @@ class NetworkController extends EventEmitter {
     }
 
     async createConnection() {
-        const connectionOptions = {
+        this.socket = tlsConnect({
             host: this.options.host,
             port: this.options.port,
             servername: this.options.host,
-            rejectUnauthorized: false,
-        };
-
-        this.socket = tlsConnect({
-            ...connectionOptions,
             rejectUnauthorized: false,
         });
 

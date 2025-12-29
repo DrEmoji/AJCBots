@@ -4,10 +4,8 @@ const { wait, getRndInteger, Login, CheckSessions, loadSessions, saveSessions, S
 class Client {
   username;
   password;
-  client;
   connection;
   roomid;
-  logs;
   rainbow;
   pose;
   posing;
