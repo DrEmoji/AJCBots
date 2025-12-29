@@ -1,6 +1,8 @@
 const XTHandler = require('./XTHander.js');
 const XMLHandler = require('./XMLHander.js');
 const JsonHandler = require('./JsonHandler.js');
+const xml2js = require('xml2js');
+const parser = new xml2js.Parser();
 
 class PacketHandler {
     constructor(controller) {
@@ -21,7 +23,16 @@ class PacketHandler {
             }
 
             case packet.includes('<'): {
-                this.xmlHandler.handle(packet);
+                parser.parseString(packet, (err, result) => {
+                    if (err) {
+                        console.error('XML parse error:', err);
+                        return;
+                    }
+
+                    const body = result.msg?.body?.[0];
+                    const action = body?.$?.action;
+                    this.xmlHandler.handle(action, body);
+                 });
                 break;
             }
 

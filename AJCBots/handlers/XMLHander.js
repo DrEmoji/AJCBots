@@ -1,5 +1,3 @@
-const xml2js = require('xml2js');
-const parser = new xml2js.Parser();
 const LoginMessage = require('../packets/LoginMessage');
 
 class XMLHandler {
@@ -7,22 +5,12 @@ class XMLHandler {
         this.controller = controller;
     }
 
-    handle(xml) {
-        parser.parseString(xml, (err, result) => {
-            if (err) {
-                console.error('XML parse error:', err);
-                return;
-            }
-
-            const body = result.msg?.body?.[0];
-            const action = body?.$?.action;
-
-            switch (action) {
-                case 'rndK':
-                    this.#handleRndK(body);
-                    break;
-            }
-        });
+    handle(action, body) {
+        switch (action) {
+            case 'rndK':
+                this.#handleRndK(body);
+                break;
+        }
     }
 
     #handleRndK(body) {
