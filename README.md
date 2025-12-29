@@ -82,10 +82,11 @@ You are solely responsible for how this software is used.
 ## 📝 Legal Notice
 
 - The author assumes **no responsibility or liability** for any misuse of this software or for any damages, penalties, bans, or other consequences that may result from its use.
-- This software is provided **as-is**, without warranty of any kind, express or implied.
+- This software is provided **“as is”**, without warranty of any kind, express or implied.
 - The author **does not guarantee support, updates, bug fixes, or maintenance**. Any updates or changes are provided **solely at the author’s discretion**.
 - This project is **not affiliated with, endorsed by, or associated with WildWorks** or any of its subsidiaries.
 - All trademarks, service marks, and game assets are the property of their respective owners.
+- **Any redistribution, modification, or public use of this software must include clear credit to the original author and a link to the original source code repository.**
 
 ---
 
