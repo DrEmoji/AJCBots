@@ -8,19 +8,19 @@ class XTHandler {
     handle(json) {
         switch (true) {
             case json?.b?.o?.params?.hasOwnProperty('dbUserId'): {
-                this.#handleUserData(json);
+                this.#handleUserData(json?.b?.o?.params);
                 break;
             }
         }
     }
 
-    #handleUserData(json) {
-       if (json?.b?.o?.params?.hasOwnProperty('playerWallSettings')) {
-        this.controller.Log(clc.green("Login Packet Successful!"));
-       }
-       else {
-        this.controller.Log(clc.redBright("Auth Packet Failed!!"));
-       }
+    #handleUserData(params) { 
+        if (params.hasOwnProperty('playerWallSettings')) {
+            this.controller.Log(clc.green("Login Packet Successful!"));
+        }
+        else {
+            this.controller.Log(clc.redBright("Auth Packet Failed!!"));
+        }
     }
 }
 
