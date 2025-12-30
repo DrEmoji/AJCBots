@@ -11,7 +11,7 @@ This project enables direct communication with the game servers without the offi
 
 AJCBots connects to Animal Jam Classic servers using raw socket connections, providing full control over packet handling and client behavior.
 
-The project is designed for advanced use cases where direct protocol interaction is required.
+The project is designed for advanced use cases where direct packet interaction is required.
 
 ---
 
