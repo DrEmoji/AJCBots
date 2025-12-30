@@ -39,7 +39,7 @@ class PacketHandler {
             case packet.includes('{'): {
                 try {
                     const json = JSON.parse(packet);
-                    this.jsonHandler.handle(json);
+                    this.jsonHandler.handle(json.b?.o?.params);
                 } catch (err) {
                     console.error('Failed to parse JSON packet:', err, packet);
                 }

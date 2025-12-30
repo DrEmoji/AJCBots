@@ -5,10 +5,10 @@ class XTHandler {
         this.controller = controller;
     }
 
-    handle(json) {
+    handle(params) {
         switch (true) {
-            case json?.b?.o?.params?.hasOwnProperty('dbUserId'): {
-                this.#handleUserData(json?.b?.o?.params);
+            case params.hasOwnProperty('dbUserId'): {
+                this.#handleUserData(params);
                 break;
             }
         }
