@@ -90,6 +90,15 @@ You are solely responsible for how this software is used.
 
 ---
 
+## 🛑 Rights Holder Takedown Request
+
+If **WildWorks**, or any of its subsidiaries, affiliates, or authorized representatives, requests the **removal, shutdown, or termination** of this project:
+
+- The request may be submitted by **opening an issue or pull request** in this repository.
+- Upon reasonable verification of authority, the project will be **terminated and taken down as promptly as possible**.
+
+---
+
 ## 📛 Disclaimer
 
 This project is provided **for educational and research purposes only**.  
