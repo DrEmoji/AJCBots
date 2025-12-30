@@ -16,6 +16,7 @@ class XTHandler {
 
     #handleUserData(params) { 
         if (params.hasOwnProperty('playerWallSettings')) {
+            this.controller.userData = params;
             this.controller.Log(clc.green("Login Packet Successful!"));
         }
         else {
