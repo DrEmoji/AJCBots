@@ -60,7 +60,7 @@ class Client {
 
     await this.controller.connect();
     this.Log('Connected to server!');
-    this.AntiAFK();
+    //this.AntiAFK();
     this.startLoop();
   }
 
@@ -86,16 +86,17 @@ class Client {
     })();
   }
 
-  AntiAFK() {
-     (async () => {
-      await wait(1000);
-      while (true) {
-          await this.controller.sendXTMessage(["ka", this.controller.roomid]);
-          await this.controller.sendXTMessage(["rc", this.controller.roomid]);
-        await wait(240000);
-      }
-    })();
-  }
+  // doesn't work anymore, you'll have to figure out a new anti afk system (I don't wanna keep updating it)
+  // AntiAFK() {
+  //    (async () => {
+  //     await wait(1000);
+  //     while (true) {
+  //         await this.controller.sendXTMessage(["ka", this.controller.roomid]);
+  //         await this.controller.sendXTMessage(["rc", this.controller.roomid]);
+  //       await wait(240000);
+  //     }
+  //   })();
+  // }
 
   async JoinDen(username,Instantiate = true) {
     await this.controller.sendXTMessage(["dj", this.controller.roomid, `den${username}`, "1", "-1"]);
