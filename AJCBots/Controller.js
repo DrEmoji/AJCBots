@@ -3,6 +3,7 @@ const { createConnection } = require('node:net');
 const { connect: tlsConnect } = require('node:tls');
 const RndKMessage = require('./packets/RndKMessage.js');
 const clc = require('cli-color');
+const { wait } = require('./utils/Extra.js');
 const { HttpsProxyAgent } = require('https-proxy-agent'); 
 const { DelimiterTransform } = require('./utils/Delimiter-Transform.js');
 const PacketHandler = require('./handlers/PacketHandler.js');
@@ -65,6 +66,7 @@ class NetworkController extends EventEmitter {
         } catch (err) {
             throw err;
         }
+        await wait(1000);
         await this.sendRawMessage(RndKMessage.build());
     }
 
