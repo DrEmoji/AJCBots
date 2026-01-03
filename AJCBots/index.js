@@ -23,6 +23,11 @@ async function InitClient({ username, password }) {
 
   await client.init();
 
+  client.controller.on('ready', async () => {
+    console.log(`Initialized: ${username}`);
+    activeClients.push(client);
+  });
+
   client.controller.on('close', () => {
     console.log(`Connection closed: ${username}`);
     const index = activeClients.indexOf(client);
@@ -52,11 +57,7 @@ async function InitClient({ username, password }) {
     const results = await Promise.allSettled(
       batch.map(async (credentials) => {
         try {
-          const client = await InitClient(credentials);
-          client.controller.on('ready', async () => {
-            console.log(`Initialized: ${credentials.username}`);
-            activeClients.push(client);
-          });
+          await InitClient(credentials);
         } catch (err) {
           console.error(`Failed to init: ${credentials.username}`, err);
         }
@@ -66,6 +67,14 @@ async function InitClient({ username, password }) {
     console.log(`Batch ${i / BATCH_SIZE + 1} complete (${results.length} accounts)`);
   }
 
+  await new Promise(resolve => {
+    const checkInterval = setInterval(() => {
+      if (activeClients.length === accounts.length) {
+        clearInterval(checkInterval);
+        resolve();
+      }
+    }, 100);
+  });
 
   const commandsThatUseIntervals = [
     "randompos",
