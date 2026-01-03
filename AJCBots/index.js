@@ -53,7 +53,6 @@ async function InitClient({ username, password }) {
       batch.map(async (credentials) => {
         try {
           const client = await InitClient(credentials);
-          console.log(`Initialized: ${credentials.username}`);
           client.controller.on('ready', async () => {
             console.log(`Initialized: ${credentials.username}`);
             activeClients.push(client);
