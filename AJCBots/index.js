@@ -54,7 +54,10 @@ async function InitClient({ username, password }) {
         try {
           const client = await InitClient(credentials);
           console.log(`Initialized: ${credentials.username}`);
-          activeClients.push(client);
+          client.controller.on('ready', async () => {
+            console.log(`Initialized: ${credentials.username}`);
+            activeClients.push(client);
+          });
         } catch (err) {
           console.error(`Failed to init: ${credentials.username}`, err);
         }
