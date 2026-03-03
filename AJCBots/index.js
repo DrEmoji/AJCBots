@@ -28,15 +28,18 @@ async function InitClient({ username, password }) {
     activeClients.push(client);
   });
 
-  client.controller.on('close', () => {
-    console.log(`Connection closed: ${username}`);
+  client.controller.once('close', async () => {
+    console.log(clc.red(`[${username}]`), `Connection closed. disposing...`);
     const index = activeClients.indexOf(client);
     if (index !== -1) {
       activeClients.splice(index, 1);
       console.log(`Removed client: ${username}`);
     }
+    client.dispose();
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    console.log(clc.red(`[${username}] Creating replacement client...`));
+    await InitClient({ username, password });
   });
-
 
   return client;
 }

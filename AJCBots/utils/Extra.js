@@ -3,6 +3,8 @@ const { v4: uuidv4 } = require('uuid');
 const { readFile, writeFile } = require('fs/promises');
 const path = require('path');
 
+let cachedFlashvars = null;
+
 function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -59,6 +61,44 @@ async function loadSessions() {
   }
 }
 
+async function fetchFlashvars(proxy = null) {
+    if (cachedFlashvars) {
+        return cachedFlashvars;
+    }
+
+    return new Promise(async (resolve, reject) => {
+        try {
+            const response = await fetch(`${ANIMAL_JAM_BASE_URL}/flashvars`, {
+                method: 'GET',
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) AJClassic/1.5.7 Chrome/87.0.4280.141 Electron/11.5.0 Safari/537.36',
+                },
+                // proxy: {
+                //     host: 'REDACTED',
+                //     port: 123456,
+                //     username: "REDACTED",
+                //     password: "REDACTED"
+                // }
+            });
+            const data = await response.json();
+            cachedFlashvars = data;
+            console.log('Flashvars fetched and cached successfully');
+            resolve(cachedFlashvars);
+        } catch (error) {
+            console.error('Failed to fetch flashvars:', error.message);
+            reject(error);
+        }
+    });
+}
+
+fetchFlashvars().catch(err => {
+    console.error('[System] Failed to fetch flashvars on startup:', err.message);
+});
+
+function getFlashvars() {
+    return cachedFlashvars;
+};
+
 async function saveSessions(sessions) {
   await writeFile(SESSIONS_PATH, JSON.stringify(sessions, null, 2));
 }
@@ -108,6 +148,7 @@ module.exports = {
     CheckSessions,
     saveSessions,
     loadSessions,
+    getFlashvars,
     SpawnLoc,
     heart,
     star,

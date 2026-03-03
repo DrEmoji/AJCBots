@@ -3,12 +3,9 @@ const { createConnection } = require('node:net');
 const { connect: tlsConnect } = require('node:tls');
 const RndKMessage = require('./packets/RndKMessage.js');
 const clc = require('cli-color');
-const { wait } = require('./utils/Extra.js');
-const { HttpsProxyAgent } = require('https-proxy-agent'); 
 const { DelimiterTransform } = require('./utils/Delimiter-Transform.js');
+const { wait, getFlashvars } = require('./utils/Extra.js');
 const PacketHandler = require('./handlers/PacketHandler.js');
-const { ANIMAL_JAM_BASE_URL } = require('./utils/Constants.js')
-const axios = require("axios");
 
 class NetworkController extends EventEmitter {
     constructor(options) {
@@ -25,20 +22,9 @@ class NetworkController extends EventEmitter {
     }
 
     async connect() {
-        let data;
-        if (this.options.proxy) {
-            const proxyUrl = `http://${this.options.proxy.username}:${encodeURIComponent(this.options.proxy.password)}@${this.options.proxy.host}:${this.options.proxy.port}`;
-            const httpsAgent = new HttpsProxyAgent(proxyUrl);
-            const response = await axios.get(`${ANIMAL_JAM_BASE_URL}/flashvars`, {
-                httpsAgent: httpsAgent,
-                timeout: 10000,
-            });
-            data = response.data
-        }
-        else {
-            const response = await axios.get(`${ANIMAL_JAM_BASE_URL}/flashvars`);
-            data = response.data
-        } 
+        const data = getFlashvars();
+        if (!data) throw new Error('Flashvars not loaded. Call fetchFlashvars() before connecting.');
+        
         this.options.host = `lb-${data.smartfoxServer}`;
         this.options.port = Number(data.smartfoxPort);
         this.options.deploy_version = Number(data.deploy_version);
@@ -67,7 +53,7 @@ class NetworkController extends EventEmitter {
             throw err;
         }
         await wait(1000);
-        await this.sendRawMessage(RndKMessage.build());
+        await this.sendRawMessage(await RndKMessage.build());
     }
 
    async sendRawMessage(message) {
@@ -231,10 +217,32 @@ class NetworkController extends EventEmitter {
 
     async close() {
         return new Promise((resolve, reject) => {
+            if (!this.socket) {
+                resolve();
+                return;
+            }
+            
             this.socket.end();
-            this.socket.once('close', () => resolve());
-            this.socket.once('error', reject);
+            this.socket.once('close', () => {
+                this.dispose();
+                resolve();
+            });
+            this.socket.once('error', (err) => {
+                this.dispose();
+                reject(err);
+            });
         });
+    }
+
+    dispose() {
+        if (this.socket) {
+            this.socket.removeAllListeners();
+            this.socket.destroy();
+            this.socket = null;
+        }
+        
+        this.removeAllListeners();
+        this.packetHandler = null;
     }
 }
 

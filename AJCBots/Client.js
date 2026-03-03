@@ -175,6 +175,13 @@ class Client {
     this.rainbow = !this.rainbow
     this.Log("Rainbow: " + this.rainbow)
   }
+
+  dispose() {
+    if (this.controller) {
+      this.controller.removeAllListeners();
+      this.controller = null;
+    }
+  } 
 }
 
 module.exports = Client
