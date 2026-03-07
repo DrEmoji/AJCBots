@@ -1,4 +1,4 @@
-const { ANIMAL_JAM_AUTHENTICATOR } = require('./Constants.js')
+const { ANIMAL_JAM_AUTHENTICATOR, ANIMAL_JAM_BASE_URL } = require('./Constants.js')
 const { v4: uuidv4 } = require('uuid');
 const { readFile, writeFile } = require('fs/promises');
 const path = require('path');
